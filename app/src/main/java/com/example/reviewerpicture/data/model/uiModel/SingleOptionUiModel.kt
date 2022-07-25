@@ -1,11 +1,13 @@
 package com.example.reviewerpicture.data.model.uiModel
 
 data class SingleOptionUiModel(
-     var isSelected: Boolean,
-     val OptionText: String
+    val parentId: String,
+    val isSelected: Boolean,
+    val OptionText: String
 ) {
-    constructor(networkModel: String): this (
+    constructor(networkModel: String, parentId: String): this (
         isSelected = false,
+        parentId = parentId,
         OptionText = networkModel
     )
 }

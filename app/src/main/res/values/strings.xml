@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Reviewer Picture</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="provide_comment">Provide Comment?</string>
+    <string name="type_comment">type comment</string>
+    <string name="submit">submit</string>
 </resources>

@@ -1,8 +1,6 @@
 package com.example.reviewerpicture.presentation.di.core
 
-import com.example.reviewerpicture.data.repository.AllDataRepositoryImpl
-import com.example.reviewerpicture.data.repository.CacheDataSourceImpl
-import com.example.reviewerpicture.data.repository.RemoteDataSourceImpl
+import com.example.reviewerpicture.data.repository.*
 import com.example.reviewerpicture.domain.repository.Repository
 import dagger.Module
 import dagger.Provides
@@ -13,12 +11,12 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideRepositoryImpl(remoteDataSourceImpl: RemoteDataSourceImpl,
-                              cacheDataSourceImpl: CacheDataSourceImpl
+    fun provideRepositoryImpl(remoteDataSource: RemoteDataSource,
+                              cacheDataSource: CacheDataSource
     ): Repository {
         return AllDataRepositoryImpl(
-            remoteDataSourceImpl = remoteDataSourceImpl,
-            cacheDataSourceImpl= cacheDataSourceImpl
+            remoteDataSource = remoteDataSource,
+            cacheDataSource= cacheDataSource
         )
     }
 }

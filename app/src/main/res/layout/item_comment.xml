@@ -7,31 +7,58 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTitle"
-        android:textSize="20sp"
-        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:textColor="@color/black"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Provide Comment?"
-        app:layout_constraintEnd_toStartOf="@+id/sth"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/sth"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvTitle"
-        app:layout_constraintBottom_toBottomOf="@id/tvTitle"/>
-    
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/edtText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:padding="16dp"
         android:layout_marginTop="16dp"
-        android:hint="enter your comment"
+        android:background="@drawable/rounded_border_black"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvText"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/provide_comment"
+            app:layout_constraintEnd_toStartOf="@+id/sth"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/sth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvText"
+            app:layout_constraintBottom_toBottomOf="@id/tvText"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@drawable/rounded_corner_black_48"
+            android:layout_marginTop="16dp"
+            android:hint="@string/type_comment"
+            android:minLines="2"
+            android:textColor="@color/black_64"
+            android:textColorHint="@color/black_48"
+            app:layout_constraintTop_toBottomOf="@+id/tvText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

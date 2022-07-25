@@ -1,8 +1,7 @@
-package com.example.reviewerpicture.presentation
+package com.example.reviewerpicture.presentation.parentActivity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.reviewerpicture.R
 import com.example.reviewerpicture.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -12,7 +11,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        binding =
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 }

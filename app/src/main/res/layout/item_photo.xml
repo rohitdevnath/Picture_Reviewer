@@ -7,29 +7,44 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTitle"
-        android:textSize="20sp"
-        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivImage"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginStart="40dp"
+        style="@style/ClickableView"
+        android:background="@drawable/rounded_corner"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_marginTop="24dp"
-        android:background="@color/colorAccent"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintDimensionRatio="1,1"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatImageView
+        style="@style/ClickableView"
+        android:id="@+id/ivAddImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rounded_corner"
+        android:scaleType="center"
+        app:srcCompat="@drawable/ic_baseline_add_photo_alternate_24"
+        app:layout_constraintDimensionRatio="1,1"
+        app:layout_constraintTop_toTopOf="@id/ivImage"
+        app:layout_constraintBottom_toBottomOf="@id/ivImage"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        app:layout_constraintStart_toStartOf="@id/ivImage"
+        app:layout_constraintEnd_toEndOf="@id/ivImage"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivRemoveIcon"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        app:srcCompat="@drawable/ic_sharp_remove_circle_outline_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_twotone_remove_circle"
         app:layout_constraintBottom_toTopOf="@+id/ivImage"
         app:layout_constraintTop_toTopOf="@+id/ivImage"
         app:layout_constraintEnd_toEndOf="@+id/ivImage"

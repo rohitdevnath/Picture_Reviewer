@@ -1,21 +1,18 @@
 package com.example.reviewerpicture.data.model.uiModel
 
 import com.example.reviewerpicture.data.model.networkModel.AllDataNetworkModel
-import com.example.reviewerpicture.data.model.uiModel.AllDataUiModel
-import com.example.reviewerpicture.data.model.uiModel.ContentType
 
 data class OptionsDataUiModel(
     override val id: String,
     override val title: String,
-    override val type: ContentType = ContentType.OPTION,
-    var selectedOption: String,
+    override val type: ContentType,
     val options: List<SingleOptionUiModel>
 ) : AllDataUiModel {
-    constructor(networkModel: AllDataNetworkModel): this (
+    constructor(networkModel: AllDataNetworkModel, type: ContentType): this (
         id = networkModel.id,
         title = networkModel.title,
-        selectedOption = "",
-        options = networkModel.dataMap.options.map(::SingleOptionUiModel)
+        type = type,
+        options = networkModel.dataMap.options.map { SingleOptionUiModel(it,networkModel.id) }
     )
 
 }

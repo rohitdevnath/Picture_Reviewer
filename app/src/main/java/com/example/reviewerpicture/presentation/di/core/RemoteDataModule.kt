@@ -1,6 +1,7 @@
 package com.example.reviewerpicture.presentation.di.core
 
 import android.content.Context
+import com.example.reviewerpicture.data.repository.RemoteDataSource
 import com.example.reviewerpicture.data.repository.RemoteDataSourceImpl
 import dagger.Module
 import dagger.Provides
@@ -11,7 +12,7 @@ class RemoteDataModule {
 
     @Singleton
     @Provides
-    fun provideRemoteDataImpl(context: Context): RemoteDataSourceImpl{
+    fun provideRemoteData(context: Context): RemoteDataSource {
         return RemoteDataSourceImpl(context = context)
     }
 }

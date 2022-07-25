@@ -1,13 +1,18 @@
 package com.example.reviewerpicture.data.repository
 
 import com.example.reviewerpicture.data.model.uiModel.*
+import com.example.reviewerpicture.utils.emptyString
+import com.example.reviewerpicture.utils.getThumbnailImage
 
-class CacheDataSourceImpl: CacheDataSource {
+class CacheDataSourceImpl : CacheDataSource {
 
-    private var dataList: List<AllDataUiModel> = listOf()
+    private val dataList: MutableList<AllDataUiModel> = mutableListOf()
 
     override fun setData(data: List<AllDataUiModel>): List<AllDataUiModel> {
-        dataList = data
+        dataList.apply {
+            clear()
+            addAll(data)
+        }
         return dataList
     }
 
@@ -15,24 +20,72 @@ class CacheDataSourceImpl: CacheDataSource {
         return dataList
     }
 
-    override fun updateData(data: AllDataUiModel): List<AllDataUiModel> {
+    override fun updateOptionDataInCache(data: SingleOptionUiModel): List<AllDataUiModel> {
         return dataList.apply {
-            filter { it.id == data.id }
-                .forEach { currData ->
-                    when(data.type){
-                        ContentType.IMAGE -> {
-                            (currData as ImageDataUiModel).imageLink = (data as ImageDataUiModel).imageLink
-                            (currData as ImageDataUiModel).imageTaken = (data as ImageDataUiModel).imageTaken
-                        }
-                        ContentType.COMMENT -> {
-                            (currData as CommentDataUiModel).commentText = (data as CommentDataUiModel).commentText
-                            (currData as CommentDataUiModel).isEnabled = (data as CommentDataUiModel).isEnabled
-                        }
-                        ContentType.OPTION -> {
-                            (currData as OptionsDataUiModel).selectedOption = (data as OptionsDataUiModel).selectedOption
-                        }
-                    }
+
+            replaceAll {
+                if (it is OptionsDataUiModel && it.id == data.parentId) {
+                    it.copy(options = it.options.map { sOp ->
+                        sOp.copy(isSelected = if (sOp.OptionText == data.OptionText) data.isSelected else false)
+                    })
+                } else {
+                    it
                 }
+            }
+        }
+
+    }
+
+    override fun updateCommentTextInCache(data: CommentDataUiModel): List<AllDataUiModel> {
+        return dataList.apply {
+            replaceAll {
+                if (it is CommentDataUiModel && it.id == data.id) {
+                    data.copy(commentText = data.commentText)
+                } else {
+                    it
+                }
+            }
+        }
+    }
+
+    override fun updateCommentToggleInCache(data: CommentDataUiModel): List<AllDataUiModel> {
+        return dataList.apply {
+            replaceAll {
+                if (it is CommentDataUiModel && it.id == data.id) {
+                    data.copy(isEnabled = data.isEnabled)
+                } else {
+                    it
+                }
+            }
+        }
+
+    }
+
+    override fun updateImageDataInCache(data: ImageDataUiModel): List<AllDataUiModel> {
+        return dataList.apply {
+            replaceAll {
+                if (it is ImageDataUiModel && it.id == data.id) {
+                    data.copy(
+                        imagePath = data.imagePath,
+                        imageTaken = true,
+                        imageLink = getThumbnailImage(data.imagePath)
+                    )
+                } else {
+                    it
+                }
+            }
+        }
+    }
+
+    override fun removeImageDataInCache(data: ImageDataUiModel): List<AllDataUiModel> {
+        return dataList.apply {
+            replaceAll {
+                if (it is ImageDataUiModel && it.id == data.id) {
+                    data.copy(imagePath = emptyString(), imageTaken = false, imageLink = null)
+                } else {
+                    it
+                }
+            }
         }
     }
 }
