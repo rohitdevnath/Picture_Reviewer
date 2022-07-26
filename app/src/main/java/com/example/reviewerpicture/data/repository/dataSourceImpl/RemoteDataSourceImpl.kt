@@ -1,8 +1,9 @@
-package com.example.reviewerpicture.data.repository
+package com.example.reviewerpicture.data.repository.dataSourceImpl
 
 import android.content.Context
 import com.example.reviewerpicture.data.model.networkModel.AllDataNetworkModel
 import com.example.reviewerpicture.data.model.networkModel.SubmitDataNetworkModel
+import com.example.reviewerpicture.data.repository.dataSource.RemoteDataSource
 import com.example.reviewerpicture.utils.getJsonFromAsset
 import com.example.reviewerpicture.utils.saveJsonFile
 import io.reactivex.Single

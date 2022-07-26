@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <dimen name="medium_margin">8dp</dimen>
+    <dimen name="big_margin">16dp</dimen>
+    <dimen name="massive_margin">24dp</dimen>
+
+    <dimen name="medium_padding">8dp</dimen>
+    <dimen name="big_padding">16dp</dimen>
+
+    <dimen name="text_size_24">24sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+
+    <dimen name="corner_radius_medium">8dp</dimen>
+
+    <dimen name="image_size">250dp</dimen>
+</resources>

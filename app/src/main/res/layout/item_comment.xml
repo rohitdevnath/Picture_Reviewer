@@ -7,7 +7,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTitle"
-        android:textSize="24sp"
+        android:textSize="@dimen/text_size_24"
         android:textColor="@color/black"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -18,8 +18,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:layout_marginTop="16dp"
+        android:padding="@dimen/big_padding"
+        android:layout_marginTop="@dimen/big_margin"
         android:background="@drawable/rounded_border_black"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvText"
-            android:textSize="18sp"
+            android:textSize="@dimen/text_size_18"
             android:textColor="@color/black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -47,9 +47,9 @@
             android:id="@+id/edtText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:padding="@dimen/medium_padding"
             android:background="@drawable/rounded_corner_black_48"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/big_margin"
             android:hint="@string/type_comment"
             android:minLines="2"
             android:textColor="@color/black_64"

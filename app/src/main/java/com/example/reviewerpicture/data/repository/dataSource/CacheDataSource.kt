@@ -1,4 +1,4 @@
-package com.example.reviewerpicture.data.repository
+package com.example.reviewerpicture.data.repository.dataSource
 
 import com.example.reviewerpicture.data.model.uiModel.AllDataUiModel
 import com.example.reviewerpicture.data.model.uiModel.CommentDataUiModel

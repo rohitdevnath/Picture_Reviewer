@@ -106,7 +106,7 @@ class ListingFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_submit, menu)
 
-        menu.findItem(R.id.menuCart).actionView.findViewById<Button>(R.id.btnSubmit).setOnClickListener {
+        menu.findItem(R.id.menuSubmit).actionView.findViewById<Button>(R.id.btnSubmit).setOnClickListener {
             viewModel.submitResponse()
         }
     }
@@ -214,7 +214,7 @@ class ListingFragment : Fragment() {
                 photoFile?.also {
                     val photoURI: Uri = FileProvider.getUriForFile(
                         requireContext(),
-                        "com.example.reviewerpicture.fileprovider",
+                        requireContext().getString(R.string.file_provider_authority),
                         it
                     )
                     viewModel.currentImageUri = photoURI

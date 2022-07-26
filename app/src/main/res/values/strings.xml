@@ -4,4 +4,5 @@
     <string name="provide_comment">Provide Comment?</string>
     <string name="type_comment">type comment</string>
     <string name="submit">submit</string>
+    <string name="submit_menu">submit</string>
 </resources>

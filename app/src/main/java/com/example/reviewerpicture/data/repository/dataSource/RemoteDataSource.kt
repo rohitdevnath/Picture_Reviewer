@@ -1,4 +1,4 @@
-package com.example.reviewerpicture.data.repository
+package com.example.reviewerpicture.data.repository.dataSource
 
 import com.example.reviewerpicture.data.model.networkModel.AllDataNetworkModel
 import com.example.reviewerpicture.data.model.networkModel.SubmitDataNetworkModel

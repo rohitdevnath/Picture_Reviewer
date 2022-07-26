@@ -3,6 +3,8 @@ package com.example.reviewerpicture.data.repository
 import com.example.reviewerpicture.data.model.networkModel.AllDataNetworkModel
 import com.example.reviewerpicture.data.model.networkModel.SubmitDataNetworkModel
 import com.example.reviewerpicture.data.model.uiModel.*
+import com.example.reviewerpicture.data.repository.dataSource.CacheDataSource
+import com.example.reviewerpicture.data.repository.dataSource.RemoteDataSource
 import com.example.reviewerpicture.domain.repository.Repository
 import io.reactivex.Single
 import java.lang.IllegalArgumentException
@@ -55,10 +57,10 @@ class AllDataRepositoryImpl(
                 }
             }
         }
-        if(submitData.any { it.userResponse.isNotEmpty() })
-            return remoteDataSource.submitData(submitData)
+        return if(submitData.any { it.userResponse.isNotEmpty() })
+            remoteDataSource.submitData(submitData)
         else
-            return Single.error { IllegalArgumentException("Please Add Some Input") }
+            Single.error { IllegalArgumentException("Please Add Some Input") }
 
     }
 
