@@ -9,6 +9,8 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.view.*
+import android.widget.Button
+import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -103,8 +105,11 @@ class ListingFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_submit, menu)
-    }
 
+        menu.findItem(R.id.menuCart).actionView.findViewById<Button>(R.id.btnSubmit).setOnClickListener {
+            viewModel.submitResponse()
+        }
+    }
     private fun setUpUi(){
 
         binding.rvContent.layoutManager = LinearLayoutManager(context)
@@ -154,8 +159,8 @@ class ListingFragment : Fragment() {
         }.addTo(compositeDisposable)
     }
 
-    private fun getData(){
-        viewModel.getAllData()
+    private fun getData(forceRemote:Boolean = false){
+        viewModel.getAllData(forceRemote)
     }
 
     private fun setUpListeners(){
@@ -173,6 +178,21 @@ class ListingFragment : Fragment() {
                 }
             }
 
+        })
+
+        viewModel.submitData.observe(this.viewLifecycleOwner,{ outcome->
+            when(outcome){
+                is Outcome.Progress -> {
+
+                }
+                is Outcome.Success -> {
+                    Toast.makeText(context,outcome.data,Toast.LENGTH_SHORT).show()
+                    getData(forceRemote = true)
+                }
+                is Outcome.Failure -> {
+                    Toast.makeText(context,outcome.e.message.toString(),Toast.LENGTH_SHORT).show()
+                }
+            }
         })
     }
 

@@ -6,6 +6,6 @@ import io.reactivex.Single
 
 class GetAllDataUseCase(private val repository: Repository) {
 
-    fun execute(): Single<List<AllDataUiModel>> = repository.getData()
+    fun execute(forceRemote: Boolean): Single<List<AllDataUiModel>> = repository.getData(forceRemote)
 
 }

@@ -7,8 +7,8 @@ import com.example.reviewerpicture.data.model.uiModel.SingleOptionUiModel
 import io.reactivex.Single
 
 interface Repository {
-    fun getData(): Single<List<AllDataUiModel>>
-    fun submitData(data: List<AllDataUiModel>)
+    fun getData(forceRemote: Boolean): Single<List<AllDataUiModel>>
+    fun submitData(): Single<Unit>
     fun updateOptionsData(data: SingleOptionUiModel): List<AllDataUiModel>
     fun updateCommentText(data: CommentDataUiModel): List<AllDataUiModel>
     fun updateCommentToggle(data: CommentDataUiModel): List<AllDataUiModel>

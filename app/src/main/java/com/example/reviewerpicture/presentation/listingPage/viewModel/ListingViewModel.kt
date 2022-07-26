@@ -24,12 +24,14 @@ class ListingViewModel(
 
     val allData: MutableLiveData<Outcome<List<AllDataUiModel>>> = MutableLiveData()
 
+    val submitData: MutableLiveData<Outcome<String>> = MutableLiveData()
+
     var currentImageUri: Uri? = null
 
     var currentImageDataUiModel: ImageDataUiModel? = null
 
-    fun getAllData() {
-        getAllDataUseCase.execute()
+    fun getAllData(forceRemote: Boolean) {
+        getAllDataUseCase.execute(forceRemote)
             .performOnBackOutOnMain()
             .subscribe (
                 {
@@ -42,7 +44,17 @@ class ListingViewModel(
     }
 
     fun submitResponse(){
+        submitData.value = Outcome.loading()
         submitDataUseCase.execute()
+            .performOnBackOutOnMain()
+            .subscribe (
+                {
+                    submitData.value = Outcome.success("Response Submitted")
+                },{
+                   submitData.value = Outcome.failure(it)
+                }
+            )
+            .addTo(compositeDisposable)
     }
 
     fun updateOption(optionUiModel: SingleOptionUiModel){
